@@ -7,7 +7,7 @@ class ShipTest < MiniTest::Test
   def test_it_is_a_ship
     cruiser = Ship.new("Cruiser", 3)
 
-    assert_instance_of Ship, ship
+    assert_instance_of Ship, cruiser
   end
 
   def test_it_has_attributes
@@ -36,4 +36,4 @@ class ShipTest < MiniTest::Test
 
     assert_equal true, cruiser.sunk?
   end
-end
+ end
