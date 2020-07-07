@@ -39,4 +39,23 @@ class CellTest < MiniTest::Test
 
     assert_equal false, cell.empty?
   end
+
+  def test_fire_upon
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+
+
+  def test_it_can_render
+    skip
+    cell = Cell.new("B4")
+    cruiser = Ship.new("Cruiser", 3)
+
+    # render can check if cell is empty
+    # if false, run ship.hit and return "H"
+    # if true, returns "M"
+    # render's RVs: H (hit), M (miss), . (fired upon), X (sunk_)
+    # render will also replace H's
+
+
+  end
 end
