@@ -1,33 +1,19 @@
 class Ship
 
-  attr_reader :name, :length, :health,
+  attr_reader :name, :length, :health
   def initialize(name, length)
     @name = name
     @length = length
-    @health = ()
-  end
-
-
-
-  def health
-    if name == "Cruiser"
-      health = 3
-    else
-      health = 2
-    end
+    @health = length
   end
 
   def sunk?
-    if @health == 0
-      true
-    else
-      false
-    end
+     @health == 0
   end
 
   def hit
-    @health - 1
-
+    new_health = @health - 1
+    @health = new_health
   end
 
 end
