@@ -1,14 +1,23 @@
 class Ship
 
-  attr_reader :name, :length, :health
+  attr_reader :name, :length, :health, 
   def initialize(name, length)
     @name = name
-    @health = 0
-    @length = {:Cruiser => 3, :Submarine => 2}
+    @length = length
+    @health = ()
   end
 
 
-  def sunk
+
+  def health
+    if name == "Cruiser"
+      health = 3
+    else
+      health = 2
+    end
+  end
+
+  def sunk?
     if @health == 0
       true
     else
@@ -17,5 +26,8 @@ class Ship
   end
 
   def hit
-    @health - 1
+    @health
+  require "pry" ; binding.pry
   end
+
+end
