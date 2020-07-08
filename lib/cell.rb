@@ -1,5 +1,3 @@
-
-
 class Cell
 
   attr_reader :coordinate, :empty, :ship, :render
@@ -42,8 +40,4 @@ class Cell
       ship.hit
     end
   end
-
-
-
-
 end

@@ -18,8 +18,6 @@ class CellTest < MiniTest::Test
     assert_nil(cell.ship)
   end
 
-
-
   def test_a_ship_can_be_added
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
@@ -50,4 +48,21 @@ class CellTest < MiniTest::Test
     assert_equal 2, cell.ship.health
   end
 
+  def test_cell_render
+    cruiser = Ship.new("Cruiser", 3)
+    cell = Cell.new("B4")
+
+    cell.place_ship(cruiser)
+    cell.fire_upon
+    assert_equal "H", cell.render
+  end
+
+  def test_revealing_ships
+    cruiser = Ship.new("Cruiser", 3)
+    cell = Cell.new("B4")
+
+    cell.place_ship(cruiser)
+    cell.render(true)
+    asssert_equal "S", cell.render
+  end
 end
