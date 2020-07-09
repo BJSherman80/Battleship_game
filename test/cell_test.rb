@@ -1,4 +1,4 @@
-require "./lib/ship"
+"./lib/ship"
 require "./lib/cell"
 require "minitest/autorun"
 require "minitest/pride"
@@ -32,7 +32,6 @@ class CellTest < MiniTest::Test
   def test_has_been_fired_upon
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
-
     cell.place_ship(cruiser)
     cell.fire_upon
 
@@ -42,9 +41,9 @@ class CellTest < MiniTest::Test
   def test_can_be_fired_upon
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
-
     cell.place_ship(cruiser)
     cell.fire_upon
+    
     assert_equal true, cell.fired_upon?
   end
 
@@ -53,6 +52,7 @@ class CellTest < MiniTest::Test
     cell = Cell.new("B4")
     cell.place_ship(cruiser)
     cell.fire_upon
+    
     assert_equal "H", cell.render
   end
 
@@ -60,6 +60,7 @@ class CellTest < MiniTest::Test
     cruiser = Ship.new("Cruiser", 3)
     cell = Cell.new("B4")
     cell.place_ship(cruiser)
+    
     assert_equal "S", cell.render(true)
   end
 end
