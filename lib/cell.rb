@@ -1,11 +1,11 @@
+require 'pry'
+
 class Cell
 
-  attr_reader :coordinate, :empty, :ship, :render
+  attr_reader :coordinate, :empty, :ship, :state
   def initialize(coordinate)
     @coordinate = coordinate.upcase
-    # @letter = coordinate[0].upcase
-    # @number = coordinate[1]
-    @render = "."
+    @state = "."
     @ship = nil
   end
 
@@ -22,7 +22,7 @@ class Cell
   end
 
   def fired_upon?
-    if render == "."
+    if @state == "."
       false
     else
       true
@@ -31,13 +31,32 @@ class Cell
 
   def fire_upon
     if empty?
-      @render = "M"
+      @state = "M"
+      return
     elsif ship.health > 1
-      @render = "H"
       ship.hit
+      @state = "H"
+      return
     else
-      @render = "X"
       ship.hit
+      @state= "X"
+      return
     end
   end
+
+  def render(reveal_ship = false)
+
+    if fired_upon? == false && empty? == true
+      "."
+    elsif reveal_ship == true && fired_upon? == false && empty? == false
+      "S"
+    elsif fired_upon? == true && ship.health > 1
+      "H"
+    elsif fired_upon? == true && ship == nil
+      "M"
+    else fired_upon? == true
+      "X"
+    end
+  end
+
 end
