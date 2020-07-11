@@ -41,14 +41,6 @@ class Board
   end
 
 
-  # def render
-  #   row_a = ["A", ".", ".", ".", "."]
-  #   row_b = ["B", ".", ".", ".", "."]
-  #   row_c = ["C", ".", ".", ".", "."]
-  #   row_d = ["D", ".", ".", ".", "."]
-  #   p "  1 2 3 4 \n" +row_a+ "\n" +row_b+ "\n" +row_c+ "\n" +row_d+ "\n"
-  # end
-
   def orientation_check(placement)
     place_letters = []
     place_numbers = []
