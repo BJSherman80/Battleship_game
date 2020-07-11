@@ -40,17 +40,16 @@ class BoardTest < Minitest::Test
     assert_equal true, board.valid_placement?(submarine, ["B2", "B3"])
   end
 
-
   def test_placement_is_consecutive
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
-
     assert_equal false, board.valid_placement?(cruiser, ["A1", "A2", "A4"])
     assert_equal true, board.valid_placement?(cruiser, ["A2", "A3", "A4"])
     assert_equal false, board.valid_placement?(submarine, ["A1", "C1"])
     assert_equal true, board.valid_placement?(submarine, ["A1", "B1"])
     assert_equal false, board.valid_placement?(cruiser, ["A3", "A2", "A1"])
+    assert_equal false board.valid_placement?(cruiser, ["A3", "A2", "A1"])
     assert_equal false, board.valid_placement?(submarine, ["C1", "B1"])
   end
 
@@ -66,7 +65,6 @@ class BoardTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
-
     assert_equal true, board.valid_placement?(submarine, ["A1", "A2"])
     assert_equal true, board.valid_placement?(cruiser, ["A1", "A2", "A3"])
   end
@@ -88,10 +86,8 @@ class BoardTest < Minitest::Test
     submarine = Ship.new("Submarine", 2)
     board = Board.new
     board.place(cruiser, ["A1", "A2", "A3"])
-
     assert_equal false, board.valid_placement?(submarine, ["A1", "B1"])
     assert_equal true, board.valid_placement?(submarine, ["B1", "B2"])
-
   end
 
   def test_render
@@ -103,11 +99,7 @@ class BoardTest < Minitest::Test
     cell_3 = board.cells["A3"]
     board.place(cruiser, ["A1", "A2", "A3"])
 
-
-    end
-
     assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", board.render
     assert_equal "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n", board.render(true)
-
   end
 end
