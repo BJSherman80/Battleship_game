@@ -11,7 +11,7 @@ class Board
 
   def generate_cells
     rows = ["A", "B", "C", "D"]
-    columns =["1", "2", "3", "4"]
+    columns = ["1", "2", "3", "4"]
     rows.each do |row|
       columns.each do |column|
         coordinate = "#{row}#{column}"
@@ -64,10 +64,39 @@ class Board
     end
   end
 
-  def render(arg = false)
-    if arg = false
-      @cells.keys.each
-    elsif arg = true
+  def render(show_all = true)
+    rows = ["  1 2 3 4 "]
+
+    ["A", "B", "C", "D"].each do |row_letter|
+      rows << render_row(row_letter, show_all)
     end
+
+  rows.join("\n")
+  end
+
+  def render_row(row_letter, show_all)
+    cells_for_this_row = cells.values.find_all do |cell|
+      cell.coordinate[0] == row_letter
+    end
+    "#{row_letter} . . . . "
   end
 end
+
+# render =
+#   "  1 2 3 4 "
+#   + "\n"
+#   + "A "
+#   + A row cell render
+#   + "\n"
+#   + "B "
+#   + B row cell render
+#   + "C "
+#   + C row cell render
+#   + "D "
+#   + D row cell render
+#
+# render =
+# header row
+# + each row
+#
+# each row = letter + iterate through each cell of that row
