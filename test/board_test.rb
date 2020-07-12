@@ -32,14 +32,8 @@ class BoardTest < Minitest::Test
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
-
-<<<<<<< HEAD
     assert_equal false, board.valid_placement?(cruiser, ["A1", "A2"])
-<<<<<<< HEAD
     assert_equal false, board.valid_placement?(submarine, ["A2", "A3", "A4"])
-=======
-=======
->>>>>>> df69be44e14d3ac3e993aea3bbb6c745c73df913
     assert_equal true, board.valid_placement?(cruiser, ["A1", "A2", "A3"])
     assert_equal false, board.valid_placement?(cruiser, ["A1", "A2"])
     assert_equal false, board.valid_placement?(submarine, ["A2", "A3", "A4"])
@@ -105,9 +99,7 @@ class BoardTest < Minitest::Test
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
     board.place(cruiser, ["A1", "A2", "A3"])
-
     assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", board.render
     assert_equal "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n", board.render(true)
->>>>>>> 248d2d8e05ff3744c4092e66b5da34b2314f7796
   end
 end
