@@ -89,21 +89,4 @@ class Board
       end
     end
   end
-
-  def render(show_all = true)
-    rows = ["  1 2 3 4 "]
-
-    ["A", "B", "C", "D"].each do |row_letter|
-      rows << render_row(row_letter, show_all)
-    end
-
-  rows.join("\n")
-  end
-
-  def render_row(row_letter, show_all)
-    cells_for_this_row = cells.values.find_all do |cell|
-      cell.coordinate[0] == row_letter
-    end
-    "#{row_letter} . . . . "
-  end
 end
