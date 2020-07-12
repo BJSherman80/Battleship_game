@@ -1,7 +1,6 @@
 require './lib/cell'
 require './lib/ship'
 
-
 class Board
   attr_reader :cells
   def initialize
@@ -19,6 +18,27 @@ class Board
       end
     end
   end
+
+  def render_row(row_letter, show_all)
+    row = "#{row_letter}"
+    cells_for_row = cells.values.find_all do |cell|
+      cell.coordinate[0] == row_letter
+    end
+    cells_for_row.each do |cell|
+      row += " " + cell.render(show_all)
+    end
+    row
+  end
+
+  def render(show_all = false)
+    rows = ["  1 2 3 4"]
+    ["A", "B", "C", "D"].map do |row_letter|
+    rows << render_row(row_letter, show_all)
+    end
+    rows.join("\n")
+    puts rows
+  end
+
 
   def orientation_check(placement)
     place_letters = []
@@ -45,11 +65,17 @@ class Board
     end
   end
 
+  def empty_spot?(placement)
+    placement.all? do |coord|
+      cells[coord].empty?
+    end
+  end
+
   def valid_placement?(ship, placement)
     spot_check = placement.all? do |spot|
       valid_coordinate?(spot)
     end
-    if (ship.length == placement.length) && (spot_check == true)
+    if (ship.length == placement.length) && (spot_check == true) && empty_spot?(placement)
       orientation_check(placement)
     else
       false
@@ -81,22 +107,3 @@ class Board
     "#{row_letter} . . . . "
   end
 end
-
-# render =
-#   "  1 2 3 4 "
-#   + "\n"
-#   + "A "
-#   + A row cell render
-#   + "\n"
-#   + "B "
-#   + B row cell render
-#   + "C "
-#   + C row cell render
-#   + "D "
-#   + D row cell render
-#
-# render =
-# header row
-# + each row
-#
-# each row = letter + iterate through each cell of that row

@@ -44,14 +44,14 @@ class Cell
 
   def render(reveal_ship = false)
 
-    if fired_upon? == false && empty? == true
-      "."
-    elsif reveal_ship == true && fired_upon? == false && empty? == false
+    if reveal_ship == true && fired_upon? == false && empty? == false
       "S"
-    elsif fired_upon? == true && ship.health > 1
-      "H"
+    elsif fired_upon? == false
+      "."
     elsif fired_upon? == true && ship == nil
       "M"
+    elsif fired_upon? == true && ship.health >= 1
+      "H"
     else fired_upon? == true
       "X"
     end
