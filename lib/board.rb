@@ -1,6 +1,5 @@
 require './lib/cell'
 require './lib/ship'
-require 'pry'
 
 class Board
   attr_reader :cells
@@ -88,6 +87,43 @@ class Board
       placement.each do |shipping|
         @cells[shipping].place_ship(ship)
       end
+    end
+  end
+
+  def random_coordinate
+    cells.keys.sample
+  end
+
+  def random_direction
+    direction = ["up", "down", "left", "right"].sample
+  end
+
+  def random_placement(ship, direction, first_coordinate)
+    letter = first_coordinate[0]
+    number = first_coordinate[1]
+    placement = [first_coordinate]
+
+    until placement.length == ship.length
+      next_one = next_coord(first_coordinate, direction)
+      placement << next_one
+      first_coordinate = next_one
+    end
+    return placement
+  end
+
+  def next_coord(first_coordinate, direction)
+    letter = first_coordinate[0]
+    number = first_coordinate[1]
+
+    case direction
+    when "up"
+      (letter.ord - 1).chr + number
+    when "down"
+      (letter.ord + 1).chr + number
+    when "left"
+      letter + (number.to_i - 1).to_s
+    when "right"
+      letter + (number.to_i + 1).to_s
     end
   end
 end

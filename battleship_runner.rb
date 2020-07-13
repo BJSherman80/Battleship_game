@@ -40,9 +40,33 @@ p "Please input your name! "
 
 player_name = gets.chomp.capitalize
 
+p "Thank you for playing, #{player_name}!"
+
 player1 = Player.new(player_name, board1)
 board1 = Board.new
+cruiser = Ship.new("cruiser", 3)
+submarine = Ship.new("submarine", 2)
 
-p2_placement_1 = player2.board.cells.values.sample
+loop do
+  cpu_coordinate = player2.board.random_coordinate
+  cpu_direction = player2.board.random_direction
+  placement_attempt = player2.board.random_placement(cruiser, cpu_direction, cpu_coordinate)
+  check = player2.board.valid_placement?(cruiser, placement_attempt)
+  until
+    check = true
+  end
+end
 
-if p2_placement_1.
+player2.board.place(cruiser, placement_attempt)
+
+loop do
+  cpu_coordinate = player2.board.random_coordinate
+  cpu_direction = player2.board.random_direction
+  placement_attempt = player2.board.random_placement(submarine, cpu_direction, cpu_coordinate)
+  check = player2.board.valid_placement?(submarine, random_placement)
+  until
+    check = true
+  end
+end
+
+p "I have laid out my ships on the grid. \nYou now need to lay out your ships. \nThe Cruiser is three units long and the Submarine is two units long."
