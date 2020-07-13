@@ -52,7 +52,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_coords_cant_be_diagonal
-    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -61,7 +60,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_valid_placement
-    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -70,7 +68,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_placing_ships
-    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -83,7 +80,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_ships_dont_overlap
-    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -104,5 +100,37 @@ class BoardTest < Minitest::Test
 
     assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", board.render
     assert_equal "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n", board.render(true)
+  end
+
+  def test_random_placement_up
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    test_placement = board.random_placement(cruiser, "up", "C3")
+
+    assert_equal ["C3", "B3", "A3"], test_placement
+  end
+
+  def test_random_placement_down
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    test_placement = board.random_placement(cruiser, "down", "A4")
+
+    assert_equal ["A4", "B4", "C4"], test_placement
+  end
+
+  def test_random_placement_left
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    test_placement = board.random_placement(cruiser, "left", "B3")
+
+    assert_equal ["B3", "B2", "B1"], test_placement
+  end
+
+  def test_random_placement_right
+    cruiser = Ship.new("Cruiser", 3)
+    board = Board.new
+    test_placement = board.random_placement(cruiser, "right", "A4")
+
+    assert_equal ["A4", "A5", "A6"], test_placement
   end
 end
