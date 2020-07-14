@@ -7,19 +7,27 @@ class Game
 
   def initialize
     intro_to_game
-    player_2_cpu_placement
+    player_2_cpu_placement_cruiser
+    player_2_cpu_placement_submarine
     player_1_placement
-
+    @cpu_names = ["Brittany", "Jonas", "Morty", "Gandhi", "Batman", "The Final Pam"].sample
+    @board2 = Board.new
+    @player2 = Player.new(cpu_names, board2)
+    @player_name = gets.chomp.capitalize
+    @board1 = Board.new
+    @player1 = Player.new(player_name, board1)
+    @cruiser = Ship.new("cruiser", 3)
+    @submarine = Ship.new("submarine", 2)
   end
 
-  cpu_names = ["Brittany", "Jonas", "Morty", "Gandhi", "Batman", "The Final Pam"].sample
-  board2 = Board.new
-  player2 = Player.new(cpu_names, board2)
-  player_name = gets.chomp.capitalize
-  board1 = Board.new
-  player1 = Player.new(player_name, board1)
-  cruiser = Ship.new("cruiser", 3)
-  submarine = Ship.new("submarine", 2)
+  # cpu_names = ["Brittany", "Jonas", "Morty", "Gandhi", "Batman", "The Final Pam"].sample
+  # board2 = Board.new
+  # player2 = Player.new(cpu_names, board2)
+  # player_name = gets.chomp.capitalize
+  # board1 = Board.new
+  # player1 = Player.new(player_name, board1)
+  # cruiser = Ship.new("cruiser", 3)
+  # submarine = Ship.new("submarine", 2)
 
   def intro_to_game
     p "Welcome to Battleship!"
