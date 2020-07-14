@@ -91,7 +91,10 @@ class BoardTest < Minitest::Test
   end
 
   def test_render
+<<<<<<< HEAD
 
+=======
+>>>>>>> 0071551a7ea729e8d42407e1afafe014624bba4d
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
