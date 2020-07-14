@@ -35,8 +35,11 @@ class Board
     ["A", "B", "C", "D"].map do |row_letter|
     rows << render_row(row_letter, show_all)
     end
-    rows.join("\n")
-    puts rows
+    renderable_rows = ""
+    rows.map do |row|
+      renderable_rows += row.to_s.concat(" \n")
+    end
+    p renderable_rows
   end
 
 
@@ -55,7 +58,6 @@ class Board
       (comparing_letters.first..comparing_letters.last).to_a == comparing_letters
     elsif (comparing_numbers.count >= 2) && (comparing_letters.count == 1)
       (comparing_numbers.first..comparing_numbers.last).to_a == comparing_numbers
-    else
     end
   end
 
