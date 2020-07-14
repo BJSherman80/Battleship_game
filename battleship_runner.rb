@@ -59,6 +59,8 @@ end
 
 player2.board.place(cruiser, placement_attempt)
 
+#this should definitely be a player method. I can see how this can run twice for the CPU using this method. 
+
 loop do
   cpu_coordinate = player2.board.random_coordinate
   cpu_direction = player2.board.random_direction
