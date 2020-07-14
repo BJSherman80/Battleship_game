@@ -70,3 +70,14 @@ loop do
 end
 
 p "I have laid out my ships on the grid. \nYou now need to lay out your ships. \nThe Cruiser is three units long and the Submarine is two units long."
+
+p1_placement = gets.chomp
+#Cruiser, A3
+loop do
+  if player1.baord.valid_placement?(p1_placement)
+    player1.board.place(p1_placement)
+    exit
+  else
+    "That was an invalid ship or placement, please re-enter a valid ship and placement."
+  end
+end
