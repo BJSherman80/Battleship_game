@@ -20,4 +20,12 @@ class PlayerTest < Minitest::Test
 
     assert_equal board1, player1.board
   end
+
+  def test_it_can_change_names
+    board1 = Board.new
+    player1 = Player.new("Priscilla", board1)
+    player1.rename("Cinderella")
+
+    assert_equal "Cinderella", player1.name
+  end
 end

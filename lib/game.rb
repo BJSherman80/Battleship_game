@@ -3,39 +3,34 @@ require "./lib/cell"
 require "./lib/board"
 require "./lib/player"
 
+board2 = Board.new
+player2 = Player.new("Batman", board2)
+cruiser = Ship.new("cruiser", 3)
+submarine = Ship.new("submarine", 2)
+board1 = Board.new
+player1 = Player.new("Gandalf", board1)
+
 class Game
   attr_reader :player1, :player2
 
-  def initialize
-    cpu_names = ["Brittany", "Joan", "Luke", "Gandhi", "Batman", "Samantha"].sample
-    board2 = Board.new
-    player2 = Player.new(cpu_names, board2)
-    board1 = Board.new
-    player1 = Player.new(player_name, board1)
-    cruiser = Ship.new("cruiser", 3)
-    submarine = Ship.new("submarine", 2)
+  def initialize(player1, player2)
+    @player1 = player1
+    @player2 = player2
+    p1_setup
   end
 
-  def setup_info
-    cpu_names = ["Brittany", "Joan", "Luke", "Gandhi", "Batman", "Samantha"].sample
-    board2 = Board.new
-    player2 = Player.new(cpu_names, board2)
-    board1 = Board.new
-    player1 = Player.new(player_name, board1)
-    cruiser = Ship.new("cruiser", 3)
-    submarine = Ship.new("submarine", 2)
+  def p1_setup
+    puts "Please input your name. "
+    player1_name = gets.chomp.capitalize
+    @player1.rename(player1_name)
   end
 
   def play_game
     intro_to_game
-    puts "Please input your name. "
-    player_name = gets.chomp.capitalize
-    setup_info
     player_2_cpu_placement
     player_1_placement
     gameplay
   end
-
 
   def intro_to_game
     p "Welcome to Battleship!"
@@ -57,6 +52,7 @@ class Game
   end
 
   def player_2_cpu_placement_cruiser
+    cruiser = Ship.new("cruiser", 3)
     loop do
       cpu_coordinate = player2.board.random_coordinate
       cpu_direction = player2.board.random_direction
@@ -66,10 +62,12 @@ class Game
         check == true
       end
     end
+    player2.board.place(ship, placement_attempt)
+
   end
 
   def player_2_cpu_placement_submarine
-    player2.board.place(cruiser, placement_attempt)
+    submarine = Ship.new("submarine", 2)
     loop do
       cpu_coordinate = player2.board.random_coordinate
       cpu_direction = player2.board.random_direction
@@ -78,6 +76,7 @@ class Game
       until
         check == true
       end
+      player2.board.place(submarine, placement_attempt)
     end
 
     p "I have laid out my ships on the grid. \nYou now need to lay out your ships. \nThe Cruiser is three units long and the Submarine is two units long."
@@ -119,28 +118,30 @@ class Game
 
   def gameplay
     loop do
-      player1.board.render
+      p "Player 1 board:"
+      player1.board.render(true)
+      p "-" * 15
+      p "Player 2 board:"
       player2.board.render
       player_1_turn
+      player2.board.render
       player_2_turn
       until
-        win_condition
+        win_condition == true
       end
     end
   end
 
-  def start
-      p "Welcome to Battleship!"
-      p "Enter p to play. Enter q to quit. "
-      start = gets.chomp
-        if start == "p"
-          loop do until win coondition
-          game.play_game
-
-        end
-      end
-    end
+  def player_1_turn
   end
+
+  def player_2_turn
+
+  end
+
+  def win_condition
+  end
+
 end
 
 
