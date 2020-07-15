@@ -91,10 +91,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_render
-<<<<<<< HEAD
-
-=======
->>>>>>> 0071551a7ea729e8d42407e1afafe014624bba4d
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
@@ -103,7 +99,7 @@ class BoardTest < Minitest::Test
     cell_3 = board.cells["A3"]
 
     board.place(cruiser, ["A1", "A2", "A3"])
-  
+
     assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", board.render
     assert_equal "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n", board.render(true)
 

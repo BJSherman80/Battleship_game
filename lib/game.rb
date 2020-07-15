@@ -7,8 +7,13 @@ class Game
   attr_reader :player1, :player2
 
   def initialize
-    @player1 = player1
-    @player2 = player2
+    cpu_names = ["Brittany", "Joan", "Luke", "Gandhi", "Batman", "Samantha"].sample
+    board2 = Board.new
+    player2 = Player.new(cpu_names, board2)
+    board1 = Board.new
+    player1 = Player.new(player_name, board1)
+    cruiser = Ship.new("cruiser", 3)
+    submarine = Ship.new("submarine", 2)
   end
 
   def setup_info
@@ -124,7 +129,27 @@ class Game
     end
   end
 
+  def start
+      p "Welcome to Battleship!"
+      p "Enter p to play. Enter q to quit. "
+      start = gets.chomp
+        if start == "p"
+          loop do until win coondition
+          game.play_game
+
+        end
+      end
+    end
+  end
 end
+
+
+
+
+
+
+
+
 
 # Methods =
 # Ship:

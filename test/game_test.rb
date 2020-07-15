@@ -57,8 +57,6 @@ class GameTest < MiniTest::Test
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
 
-
-
   end
 
   def test_player1_can_place_ship
@@ -70,5 +68,7 @@ class GameTest < MiniTest::Test
     assert_equal "You sucessfully placed your ship!", game1.player_1_placement
 
   end
+
+
 
 end
