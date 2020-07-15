@@ -10,7 +10,7 @@ require "mocha/minitest"
 class GameTest < MiniTest::Test
 
   def test_it_is_a_game
-
+    skip
     board2 = Board.new
     player2 = Player.new("Batman", board2)
     cruiser = Ship.new("cruiser", 3)
@@ -23,6 +23,7 @@ class GameTest < MiniTest::Test
   end
 
   def player_name_input
+    skip
     board2 = Board.new
     player2 = Player.new("Batman", board2)
     cruiser = Ship.new("cruiser", 3)
@@ -35,6 +36,7 @@ class GameTest < MiniTest::Test
   end
 
   def test_player2_cpu_placement
+    skip
     board2 = Board.new
     player2 = Player.new("Batman", board2)
     cruiser = Ship.new("cruiser", 3)
@@ -49,15 +51,28 @@ class GameTest < MiniTest::Test
 
   def test_player2_cpu_placement_cruiser
     skip
-    game = Game.new
+    board2 = Board.new
+    player2 = Player.new("Batman", board2)
+    cruiser = Ship.new("cruiser", 3)
+    submarine = Ship.new("submarine", 2)
+    board1 = Board.new
+    player1 = Player.new("Gandalf", board1)
+    game = Game.new(player1, player2)
 
-    assert_equal true, game.player_2_cpu_placement_cruiser
+    assert_equal true, game.cpu_cruiser_placement
   end
 
   def test_player2_cpu_placement_submarine
     skip
-    game = Game.new
-    assert_equal true, game.player_2_cpu_placement_submarine
+    board2 = Board.new
+    player2 = Player.new("Batman", board2)
+    cruiser = Ship.new("cruiser", 3)
+    submarine = Ship.new("submarine", 2)
+    board1 = Board.new
+    player1 = Player.new("Gandalf", board1)
+    game = Game.new(player1, player2)
+
+    assert_equal true, game.cpu_sub_placement
   end
 
   def test_player_1_ship_info
