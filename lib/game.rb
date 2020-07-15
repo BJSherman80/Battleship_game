@@ -136,10 +136,12 @@ class Game
   end
 
   def player_1_turn
+
   end
 
   def player_2_turn
     
+
   end
 
   def win_condition

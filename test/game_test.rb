@@ -76,15 +76,16 @@ class GameTest < MiniTest::Test
   end
 
   def test_player_1_ship_info
+    board2 = Board.new
+    player2 = Player.new("Batman", board2)
+    cruiser = Ship.new("cruiser", 3)
+    submarine = Ship.new("submarine", 2)
+    board1 = Board.new
+    player1 = Player.new("Gandalf", board1)
+    game = Game.new(player1, player2)
+    require 'pry'; binding.pry
 
-    game = Game.new
-
-
-
-
-    assert_equal
-
-
+    assert_equal [], game.player_1_ship_information
   end
 
   def test_player1_can_place_ship
