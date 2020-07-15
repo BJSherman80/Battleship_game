@@ -77,24 +77,42 @@ class GameTest < MiniTest::Test
 
   def test_player_1_ship_info
     skip
-    game = Game.new
+    board2 = Board.new
+    player2 = Player.new("Batman", board2)
+    cruiser = Ship.new("cruiser", 3)
+    submarine = Ship.new("submarine", 2)
+    board1 = Board.new
+    player1 = Player.new("Gandalf", board1)
+    game = Game.new(player1, player2)
 
-
-
-
-    assert_equal
-
+    assert_equal (cruiser || submarine), game.player_1_ship_information
   end
 
   def test_player1_can_place_ship
     skip
 
-    game = Game.new
-    # player1 = Player.new("Bob", board1)
-    # player2 = Player.new()
+    board2 = Board.new
+    player2 = Player.new("Batman", board2)
+    cruiser = Ship.new("cruiser", 3)
+    submarine = Ship.new("submarine", 2)
+    board1 = Board.new
+    player1 = Player.new("Gandalf", board1)
+    game = Game.new(player1, player2)
 
     assert_equal "You sucessfully placed your ship!", game.player_1_placement
 
   end
 
+  def test_player_2_turn
+    board2 = Board.new
+    player2 = Player.new("Batman", board2)
+    cruiser = Ship.new("cruiser", 3)
+    submarine = Ship.new("submarine", 2)
+    board1 = Board.new
+    player1 = Player.new("Gandalf", board1)
+    game = Game.new(player1, player2)
+    game.player_2_cpu_placement
+
+    assert_equal "I have made my move.", game.player_2_turn
+  end
 end
