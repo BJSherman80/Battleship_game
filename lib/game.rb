@@ -28,6 +28,7 @@ class Game
   def play_game
     intro_to_game
     player_2_cpu_placement
+    taunt
     player_1_placement
     gameplay
   end
@@ -47,38 +48,39 @@ class Game
   end
 
   def player_2_cpu_placement
-    player_2_cpu_placement_cruiser
-    player_2_cpu_placement_submarine
+    cpu_cruiser_placement
+    cpu_sub_placement
   end
 
-  def player_2_cpu_placement_cruiser
+  def cpu_cruiser_placement
     cruiser = Ship.new("cruiser", 3)
-    loop do
-      cpu_coordinate = player2.board.random_coordinate
-      cpu_direction = player2.board.random_direction
-      placement_attempt = player2.board.random_placement(cruiser, cpu_direction, cpu_coordinate)
-      check = player2.board.valid_placement?(cruiser, placement_attempt)
-      until
-        check == true
-      end
+    check = false
+    until check == true
+      cpu_coordinate = @player2.board.random_coordinate
+      cpu_direction = @player2.board.random_direction
+      placement_attempt = @player2.board.random_placement(cruiser, cpu_direction, cpu_coordinate)
+      check = @player2.board.valid_placement?(cruiser, placement_attempt)
     end
-    player2.board.place(ship, placement_attempt)
+    @player2.board.place(cruiser, placement_attempt)
+    check
 
   end
 
-  def player_2_cpu_placement_submarine
+  def cpu_sub_placement
     submarine = Ship.new("submarine", 2)
-    loop do
-      cpu_coordinate = player2.board.random_coordinate
-      cpu_direction = player2.board.random_direction
-      placement_attempt = player2.board.random_placement(submarine, cpu_direction, cpu_coordinate)
-      check = player2.board.valid_placement?(submarine, random_placement)
-      until
-        check == true
-      end
-      player2.board.place(submarine, placement_attempt)
+    check = false
+    until check == true
+      cpu_coordinate = @player2.board.random_coordinate
+      cpu_direction = @player2.board.random_direction
+      placement_attempt = @player2.board.random_placement(submarine, cpu_direction, cpu_coordinate)
+      check = @player2.board.valid_placement?(submarine, placement_attempt)
     end
 
+    player2.board.place(submarine, placement_attempt)
+    check
+  end
+
+  def taunt
     p "I have laid out my ships on the grid. \nYou now need to lay out your ships. \nThe Cruiser is three units long and the Submarine is two units long."
   end
 
@@ -136,7 +138,7 @@ class Game
   end
 
   def player_2_turn
-
+    
   end
 
   def win_condition
