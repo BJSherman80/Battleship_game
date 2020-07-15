@@ -86,21 +86,30 @@ class Game
 
 
   def player_1_placement_instructions
-    p "Please place your ship. The formatting should fit the length of your ship. For example, a cruiser has a length of 3 units and should be placed on three coordinates. Please enter those coordinates one at a time below:"
+    p "Please place your ship. The formatting should fit the length of your ship. For example, a cruiser has a length of 3 units and should be placed on three coordinates. Please enter the ship, then those coordinates one at a time below:"
   end
 
   def player_1_ship_information
+    submarine = Ship.new("submarine", 2)
+    cruiser = Ship.new("cruiser", 3)
     p1_ship_choice = gets.chomp
-    p1_placement = []
+    if p1_ship_choice == "cruiser"
+      p1_ship_choice = cruiser
+    elsif p1_ship_choice == "submarine"
+      p1_ship_choice = submarine
+    end
+
     ship_spot_1 = gets.chomp
     ship_spot_2 = gets.chomp
-    case ship.length
-    when ship.length = 2
+    p1_placement = []
+    case p1_ship_choice.length
+    when p1_ship_choice.length == 2
       p1_placement << ship_spot_1 << ship_spot_2
-    when ship.length = 3
+    when p1_ship_choice.length == 3
       ship_spot_3 = gets.chomp
       p1_placement << ship_spot_1 << ship_spot_2 << ship_spot_3
     end
+    p1_ship_choice
   end
 
   def player_1_placement
@@ -136,15 +145,23 @@ class Game
   end
 
   def player_1_turn
+    fire = gets.chomp
+    if fire.
 
   end
 
   def player_2_turn
-    
-
+    attack = "A1"
+    until player1.board.cells[attack].fired_upon? == false
+    attack = player2.board.random_coordinate
+    end
+    cell_to_attack = player1.board.cells[attack]
+    cell_to_attack.fire_upon
+    p "I have made my move."
   end
 
   def win_condition
+
   end
 
 end
