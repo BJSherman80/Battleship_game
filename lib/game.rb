@@ -11,7 +11,7 @@ board1 = Board.new
 player1 = Player.new("Gandalf", board1)
 
 class Game
-  attr_reader :player1, :player2
+  attr_reader :player1, :player2,
 
   def initialize(player1, player2)
     @player1 = player1
@@ -105,6 +105,7 @@ class Game
 
     player_1_placement_instructions
     player_1_ship_information
+    player1.baord.render
     loop do
       if player1.board.valid_placement?(p1_ship_choice, p1_placement)
         player1.board.place(p1_ship_choice, p1_placement)

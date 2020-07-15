@@ -42,7 +42,7 @@ class GameTest < MiniTest::Test
     board1 = Board.new
     player1 = Player.new("Gandalf", board1)
     game = Game.new(player1, player2)
-    require "pry"; binding.pry
+
 
     assert_equal true, game.player_2_cpu_placement
   end
@@ -61,7 +61,7 @@ class GameTest < MiniTest::Test
   end
 
   def test_player_1_ship_info
-    skip
+
     game = Game.new
 
 
