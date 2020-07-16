@@ -3,6 +3,7 @@ require "minitest/pride"
 require "./lib/board"
 require './lib/ship'
 
+
 class BoardTest < Minitest::Test
   def test_it_is_a_board
     board = Board.new
@@ -90,16 +91,19 @@ class BoardTest < Minitest::Test
   end
 
   def test_render
-    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     board = Board.new
     cell_1 = board.cells["A1"]
     cell_2 = board.cells["A2"]
     cell_3 = board.cells["A3"]
+
     board.place(cruiser, ["A1", "A2", "A3"])
+
     assert_equal "  1 2 3 4 \nA . . . . \nB . . . . \nC . . . . \nD . . . . \n", board.render
     assert_equal "  1 2 3 4 \nA S S S . \nB . . . . \nC . . . . \nD . . . . \n", board.render(true)
+
+
   end
 
   def test_random_placement_up

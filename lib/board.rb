@@ -55,7 +55,6 @@ class Board
       (comparing_letters.first..comparing_letters.last).to_a == comparing_letters
     elsif (comparing_numbers.count >= 2) && (comparing_letters.count == 1)
       (comparing_numbers.first..comparing_numbers.last).to_a == comparing_numbers
-    else
     end
   end
 
