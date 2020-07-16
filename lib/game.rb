@@ -81,7 +81,7 @@ class Game
   end
 
   def taunt
-    p "I have laid out my ships on the grid. \nYou now need to lay out your ships. \nThe Cruiser is three units long and the Submarine is two units long."
+    puts "I have laid out my ships on the grid. \n You now need to lay out your ships. \nThe Cruiser is three units long and the Submarine is two units long."
   end
 
 
@@ -113,14 +113,15 @@ class Game
   end
 
   def player_1_placement
+
     player_1_placement_instructions
     2.times do
-      player_1_ship_information
       loop do
+        p1_ship_choice, p1_placement = player_1_ship_information
         if player1.board.valid_placement?(p1_ship_choice, p1_placement)
           player1.board.place(p1_ship_choice, p1_placement)
           "You sucessfully placed your ship!"
-          exit
+          break
         else
           "That was an invalid ship or coordinate, please re-enter a valid ship and coordinate."
         end
@@ -129,7 +130,7 @@ class Game
   end
 
   def gameplay
-    loop do
+    until win_condition == true
       p "Player 1 board:"
       player1.board.render(true)
       p "-" * 15
@@ -139,9 +140,6 @@ class Game
       player_1_turn
       player2.board.render
       player_2_turn
-      until
-        win_condition == true
-      end
     end
   end
 
@@ -173,13 +171,13 @@ class Game
     p "I have made my move."
   end
 
-  def win_calculations
+  def winner_name_or_false
     p1lose = player1.board.cells.values.find_all do |p1calc|
-      p1calc.state = X
+      p1calc.state == "X"
     end
 
     p2lose = player2.board.cells.values.find_all do |p2calc|
-      p2calc.state = X
+      p2calc.state == "X"
     end
 
     if p1lose.count == 5
@@ -193,36 +191,13 @@ class Game
 
   def win_condition
 
-    case win_calculations
-    when win_calculations == false
-      break
-    when win_calculations == true
+    case winner_name_or_false
+    when false
+      return false
+    when true
       p "Congrats for winning the game, #{winner}!"
+      true
     end
   end
 
 end
-
-
-
-
-
-
-
-
-
-# Methods =
-# Ship:
-#  sunk? - checks if health is 0
-#  hit - does damage to ship
-# Cell:
-#  empty? - checks if cell is empty
-#  place_ship(ship_object) - changes ship attribute to include ship_object
-#  fired_upon? - checks if fired upon or not
-#  fire_upon - determines miss/hit/sink
-#  render(argument passed on by board) - renders the cell
-# Board:
-#  orientation_check(placement) - checks placement of ship based on array of cells
-#  place(ship, placement) - places ship and checks to see if it's valid
-# Player:
-#  none
