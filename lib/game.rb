@@ -92,7 +92,7 @@ class Game
   def player_1_ship_information
     submarine = Ship.new("submarine", 2)
     cruiser = Ship.new("cruiser", 3)
-    p1_ship_choice = gets.chomp
+    p1_ship_choice = gets.chomp.downcase
     if p1_ship_choice == "cruiser"
       p1_ship_choice = cruiser
     elsif p1_ship_choice == "submarine"
@@ -115,14 +115,16 @@ class Game
   def player_1_placement
 
     player_1_placement_instructions
-    player_1_ship_information
-    loop do
-      if player1.board.valid_placement?(p1_ship_choice, p1_placement)
-        player1.board.place(p1_ship_choice, p1_placement)
-        "You sucessfully placed your ship!"
-        exit
-      else
-        "That was an invalid ship or coordinate, please re-enter a valid ship and coordinate."
+    2.times do
+      player_1_ship_information
+      loop do
+        if player1.board.valid_placement?(p1_ship_choice, p1_placement)
+          player1.board.place(p1_ship_choice, p1_placement)
+          "You sucessfully placed your ship!"
+          exit
+        else
+          "That was an invalid ship or coordinate, please re-enter a valid ship and coordinate."
+        end
       end
     end
   end
@@ -134,6 +136,7 @@ class Game
       p "-" * 15
       p "Player 2 board:"
       player2.board.render
+      p "-" * 15
       player_1_turn
       player2.board.render
       player_2_turn
@@ -144,6 +147,9 @@ class Game
   end
 
   def player_1_turn
+    fire = gets.chomp
+    if player2.board.cells[fire].fired_upon? == false
+      
   end
 
   def player_2_turn
@@ -156,8 +162,32 @@ class Game
     p "I have made my move."
   end
 
+  def win_calculations
+    p1lose = player1.board.cells.values.find_all do |p1calc|
+      p1calc.state = X
+    end
+
+    p2lose = player2.board.cells.values.find_all do |p2calc|
+      p2calc.state = X
+    end
+
+    if p1lose.count == 5
+      winner = @player2.name
+    elsif p2lose.count == 5
+      winner = @player1.name
+    else
+      false
+    end
+  end
+
   def win_condition
 
+    case win_calculations
+    when win_calculations == false
+      break
+    when win_calculations == true
+      p "Congrats for winning the game, #{winner}!"
+    end
   end
 
 end
