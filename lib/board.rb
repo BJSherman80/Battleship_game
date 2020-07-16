@@ -35,11 +35,8 @@ class Board
     ["A", "B", "C", "D"].map do |row_letter|
     rows << render_row(row_letter, show_all)
     end
-    renderable_rows = ""
-    rows.map do |row|
-      renderable_rows += row.to_s.concat(" \n")
-    end
-    p renderable_rows
+    rows.join("\n")
+    puts rows
   end
 
 

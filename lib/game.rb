@@ -103,17 +103,16 @@ class Game
     ship_spot_2 = gets.chomp
     p1_placement = []
     case p1_ship_choice.length
-    when p1_ship_choice.length == 2
+    when 2
       p1_placement << ship_spot_1 << ship_spot_2
-    when p1_ship_choice.length == 3
+    when 3
       ship_spot_3 = gets.chomp
       p1_placement << ship_spot_1 << ship_spot_2 << ship_spot_3
     end
-    p1_ship_choice
+    [p1_ship_choice, p1_placement]
   end
 
   def player_1_placement
-
     player_1_placement_instructions
     2.times do
       player_1_ship_information
@@ -148,9 +147,21 @@ class Game
 
   def player_1_turn
     fire = gets.chomp
+
     if player2.board.cells[fire].fired_upon? == false
-      
+      player2.board.cells[fire].fire_upon
+        if player2.board.cells[fire].state == "H"
+          p "Your shot on #{fire} was a hit"
+        elsif player2.board.cells[fire].state == "M"
+          p "your shot on #{fire} was a miss"
+        elsif player2.board.cells[fire].state == "X"
+          p "You sunk their ship!"
+        end
+    elsif
+      player_1_turn
+    end
   end
+
 
   def player_2_turn
     attack = "A1"
@@ -191,6 +202,14 @@ class Game
   end
 
 end
+
+
+
+
+
+
+
+
 
 # Methods =
 # Ship:
